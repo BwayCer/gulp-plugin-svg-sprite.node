@@ -1,0 +1,91 @@
+
+@use 'sass:math';
+
+
+$imgUrlDirPath: '.' !default;
+
+
+$imgUrl: "#{$imgUrlDirPath}/starJue.svg";
+$imgWidth: 510;
+$imgHeight: 350;
+
+$_info: (
+  green-jpg: (
+    width: 310,
+    height: 150,
+    aspectRatio: 2.067,
+    offsetX: 0,
+    offsetY: 0,
+    relativeOffsetX: 1,
+    relativeOffsetY: 1,
+    sizeX: 164.516%,
+    sizeY: 233.333%,
+    bgPS: 1% 1% / 164.516% 233.333%,
+  ),
+  orange-png: (
+    width: 192,
+    height: 192,
+    aspectRatio: 1,
+    offsetX: 0,
+    offsetY: 154,
+    relativeOffsetX: 0.629,
+    relativeOffsetY: 98.734,
+    sizeX: 265.625%,
+    sizeY: 182.292%,
+    bgPS: 0.629% 98.734% / 265.625% 182.292%,
+  ),
+  red-webp: (
+    width: 192,
+    height: 192,
+    aspectRatio: 1,
+    offsetX: 314,
+    offsetY: 0,
+    relativeOffsetX: 99.371,
+    relativeOffsetY: 1.266,
+    sizeX: 265.625%,
+    sizeY: 182.292%,
+    bgPS: 99.371% 1.266% / 265.625% 182.292%,
+  ),
+  svg: (
+    width: 32,
+    height: 32,
+    aspectRatio: 1,
+    offsetX: 314,
+    offsetY: 196,
+    relativeOffsetX: 66.109,
+    relativeOffsetY: 62.264,
+    sizeX: 1593.75%,
+    sizeY: 1093.75%,
+    bgPS: 66.109% 62.264% / 1593.75% 1093.75%,
+  ),
+);
+
+@function getInfo($name, $prop: null) {
+  @if $name == url {
+    @return $imgUrl;
+  } @else if $name == imgWidth {
+    @return $imgWidth;
+  } @else if $name == imgHeight {
+    @return $imgHeight;
+  } @else {
+    @return map-get(map-get($_info, $name), $prop);
+  }
+}
+
+@mixin icon($name, $sizeMode: null) {
+  $size: var(--em, --elem-em);
+
+  --elem-em: 1em;
+  background: getInfo($name, bgPS) no-repeat url($imgUrl);
+  @if $sizeMode == width {
+    width: $size;
+    height: calc(
+      #{math.div(getInfo($name, height), getInfo($name, width))}
+      * $size
+    );
+  } @else {
+    width: calc(#{getInfo($name, aspectRatio)} * #{$size});
+    height: $size;
+  }
+}
+

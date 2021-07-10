@@ -1,0 +1,115 @@
+
+@use 'sass:math';
+
+
+$imgUrlDirPath: '.' !default;
+
+
+$imgUrl: "#{$imgUrlDirPath}/starJue-dev.svg";
+$imgWidth: 706;
+$imgHeight: 546;
+
+$_info: (
+  gif: (
+    width: 192,
+    height: 192,
+    aspectRatio: 1,
+    offsetX: 0,
+    offsetY: 154,
+    relativeOffsetX: 0.389,
+    relativeOffsetY: 44.068,
+    sizeX: 367.708%,
+    sizeY: 284.375%,
+    bgPS: 0.389% 44.068% / 367.708% 284.375%,
+  ),
+  gif-webp: (
+    width: 192,
+    height: 192,
+    aspectRatio: 1,
+    offsetX: 314,
+    offsetY: 0,
+    relativeOffsetX: 61.479,
+    relativeOffsetY: 0.565,
+    sizeX: 367.708%,
+    sizeY: 284.375%,
+    bgPS: 61.479% 0.565% / 367.708% 284.375%,
+  ),
+  green-jpg: (
+    width: 310,
+    height: 150,
+    aspectRatio: 2.067,
+    offsetX: 0,
+    offsetY: 0,
+    relativeOffsetX: 0.505,
+    relativeOffsetY: 0.505,
+    sizeX: 227.742%,
+    sizeY: 364%,
+    bgPS: 0.505% 0.505% / 227.742% 364%,
+  ),
+  orange-png: (
+    width: 192,
+    height: 192,
+    aspectRatio: 1,
+    offsetX: 510,
+    offsetY: 0,
+    relativeOffsetX: 99.611,
+    relativeOffsetY: 0.565,
+    sizeX: 367.708%,
+    sizeY: 284.375%,
+    bgPS: 99.611% 0.565% / 367.708% 284.375%,
+  ),
+  red-webp: (
+    width: 192,
+    height: 192,
+    aspectRatio: 1,
+    offsetX: 0,
+    offsetY: 350,
+    relativeOffsetX: 0.389,
+    relativeOffsetY: 99.435,
+    sizeX: 367.708%,
+    sizeY: 284.375%,
+    bgPS: 0.389% 99.435% / 367.708% 284.375%,
+  ),
+  svg: (
+    width: 36,
+    height: 36,
+    aspectRatio: 1,
+    offsetX: 510,
+    offsetY: 196,
+    relativeOffsetX: 76.418,
+    relativeOffsetY: 38.824,
+    sizeX: 1961.111%,
+    sizeY: 1516.667%,
+    bgPS: 76.418% 38.824% / 1961.111% 1516.667%,
+  ),
+);
+
+@function getInfo($name, $prop: null) {
+  @if $name == url {
+    @return $imgUrl;
+  } @else if $name == imgWidth {
+    @return $imgWidth;
+  } @else if $name == imgHeight {
+    @return $imgHeight;
+  } @else {
+    @return map-get(map-get($_info, $name), $prop);
+  }
+}
+
+@mixin icon($name, $sizeMode: null) {
+  $size: var(--em, --elem-em);
+
+  --elem-em: 1em;
+  background: getInfo($name, bgPS) no-repeat url($imgUrl);
+  @if $sizeMode == width {
+    width: $size;
+    height: calc(
+      #{math.div(getInfo($name, height), getInfo($name, width))}
+      * $size
+    );
+  } @else {
+    width: calc(#{getInfo($name, aspectRatio)} * #{$size});
+    height: $size;
+  }
+}
+

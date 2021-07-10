@@ -1,0 +1,136 @@
+body {
+  --em: max(min(12.5vw, 14.3vh), 68px);
+  margin: 2em auto;
+  width: calc(7 * var(--em));
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  background: #c8e6c9;
+}
+body .icon, body .prodSvg,
+body .devSvg {
+  margin: auto;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.38);
+}
+body .icon::before, body .prodSvg::before,
+body .devSvg::before {
+  font-size: calc(0.14 * var(--em));
+  padding: 2px 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.38);
+  color: white;
+}
+body .prodSvg,
+body .devSvg {
+  width: calc(2.4 * var(--em));
+  grid-column: 2 span;
+  grid-row: 2 span;
+}
+body .prodSvg {
+  height: calc(2.4 * 0.6862745098 * var(--em));
+  background: center/100% no-repeat url("../image/starJue.svg");
+}
+body .prodSvg::before {
+  content: "prod.svg";
+}
+body .devSvg {
+  height: calc(2.4 * 0.7733711048 * var(--em));
+  background: center/100% no-repeat url("../image/starJue-dev.svg");
+}
+body .devSvg::before {
+  content: "dev.svg";
+}
+body .icon {
+  display: block;
+}
+body .icon.prod-green-jpg {
+  --elem-em: 1em;
+  background: 1% 1%/164.516% 233.333% no-repeat url("../image/starJue.svg");
+  width: calc(2.067 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.prod-green-jpg::before {
+  content: "prod-jpg";
+}
+body .icon.prod-orange-png {
+  --elem-em: 1em;
+  background: 0.629% 98.734%/265.625% 182.292% no-repeat url("../image/starJue.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.prod-orange-png::before {
+  content: "prod-png";
+}
+body .icon.prod-red-webp {
+  --elem-em: 1em;
+  background: 99.371% 1.266%/265.625% 182.292% no-repeat url("../image/starJue.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.prod-red-webp::before {
+  content: "prod-webp";
+}
+body .icon.prod-svg {
+  --elem-em: 1em;
+  background: 66.109% 62.264%/1593.75% 1093.75% no-repeat url("../image/starJue.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.prod-svg::before {
+  content: "prod-svg";
+}
+body .icon.dev-gif {
+  --elem-em: 1em;
+  background: 0.389% 44.068%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-gif::before {
+  content: "dev-gif";
+}
+body .icon.dev-gif-webp {
+  --elem-em: 1em;
+  background: 61.479% 0.565%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-gif-webp::before {
+  content: "dev-webp";
+}
+body .icon.dev-green-jpg {
+  --elem-em: 1em;
+  background: 0.505% 0.505%/227.742% 364% no-repeat url("../image/starJue-dev.svg");
+  width: calc(2.067 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-green-jpg::before {
+  content: "dev-jpg";
+}
+body .icon.dev-orange-png {
+  --elem-em: 1em;
+  background: 99.611% 0.565%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-orange-png::before {
+  content: "dev-png";
+}
+body .icon.dev-red-webp {
+  --elem-em: 1em;
+  background: 0.389% 99.435%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-red-webp::before {
+  content: "dev-webp";
+}
+body .icon.dev-svg {
+  --elem-em: 1em;
+  background: 76.418% 38.824%/1961.111% 1516.667% no-repeat url("../image/starJue-dev.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-svg::before {
+  content: "dev-svg";
+}
