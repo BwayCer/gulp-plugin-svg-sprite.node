@@ -1,0 +1,18 @@
+{
+  "name": "gulp-plugin-svg-sprite",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "gulp:svgSprite": "gulp -f ./gulpfile.js svgSprite"
+  },
+  "dependencies": {
+    "image-size": "^1.0.0",
+    "plugin-error": "^1.0.1",
+    "svg-sprite": "^1.5.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
+    "sass": "^1.35.2"
+  }
+}
