@@ -1,0 +1,113 @@
+
+@use 'sass:math';
+@use '../../../dist/sample/image/starJue' as starJueProd with (
+  // 圖片相對於 css 文件的位置或者圖片的絕對路徑
+  $imgUrlDirPath: '../image',
+);
+@use '../../../dist/sample/image/starJue-dev' as starJueDev with (
+  $imgUrlDirPath: '../image',
+);
+
+
+body {
+  --em: max(min(12.5vw, 14.3vh), 68px);
+  margin: 2em auto;
+  width: calc(7 * var(--em));
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1em;
+  background: #c8e6c9;
+
+  %icon {
+    margin: auto;
+    box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 38%);
+
+    &::before {
+      font-size: calc(0.14 * var(--em));
+      padding: 2px 4px;
+      border: 1px solid rgb(0 0 0 / 12%);
+      display: inline-block;
+      background: rgb(0 0 0 / 38%);
+      color: white;
+    }
+  }
+
+  .prodSvg,
+  .devSvg {
+    @extend %icon;
+    width: calc(2.4 * var(--em));
+    grid-column: 2 span;
+    grid-row: 2 span;
+  }
+  .prodSvg {
+    height: calc(2.4 * #{math.div(starJueProd.getInfo(imgHeight), starJueProd.getInfo(imgWidth))} * var(--em));
+    background: center / 100% no-repeat url("../image/starJue.svg");
+
+    &::before {
+      content: "prod.svg";
+    }
+  }
+  .devSvg {
+    height: calc(2.4 * #{math.div(starJueDev.getInfo(imgHeight), starJueDev.getInfo(imgWidth))} * var(--em));
+    background: center / 100% no-repeat url("../image/starJue-dev.svg");
+
+    &::before {
+      content: "dev.svg";
+    }
+  }
+
+  .icon {
+    @mixin prodIcon($color, $ext) {
+      @include starJueProd.icon(#{$color}#{$ext});
+
+      &::before {
+        content: "prod-#{$ext}";
+      }
+    }
+    @mixin devIcon($color, $ext) {
+      @include starJueDev.icon(#{$color}#{$ext});
+
+      &::before {
+        content: "dev-#{$ext}";
+      }
+    }
+
+    @extend %icon;
+    display: block;
+
+    &.prod {
+      &-green-jpg {
+        @include prodIcon('green-', 'jpg');
+      }
+      &-orange-png {
+        @include prodIcon('orange-', 'png');
+      }
+      &-red-webp {
+        @include prodIcon('red-', 'webp');
+      }
+      &-svg {
+        @include prodIcon('', 'svg');
+      }
+    }
+    &.dev {
+      &-gif {
+        @include devIcon('', 'gif');
+      }
+      &-gif-webp {
+        @include devIcon('gif-', 'webp');
+      }
+      &-green-jpg {
+        @include devIcon('green-', 'jpg');
+      }
+      &-orange-png {
+        @include devIcon('orange-', 'png');
+      }
+      &-red-webp {
+        @include devIcon('red-', 'webp');
+      }
+      &-svg {
+        @include devIcon('', 'svg');
+      }
+    }
+  }
+}

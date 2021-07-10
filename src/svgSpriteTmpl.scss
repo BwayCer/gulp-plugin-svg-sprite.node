@@ -1,0 +1,65 @@
+
+@use 'sass:math';
+
+
+$imgUrlDirPath: '.' !default;
+
+
+$imgUrl: "#{$imgUrlDirPath}/{{imgFileName}}";
+$imgWidth: {{#precision}}{{spriteWidth}}{{/precision}};
+$imgHeight: {{#precision}}{{spriteHeight}}{{/precision}};
+
+$_info: (
+{{#shapes}}
+  {{name}}: (
+    width: {{#jsEval}} {{width.outer}} - 4 {{/jsEval}},
+    height: {{#jsEval}} {{height.outer}} - 4 {{/jsEval}},
+    aspectRatio: {{#jsEval}} ({{width.outer}} - 4) / ({{height.outer}} - 4) {{/jsEval}},
+    offsetX: {{#jsEval}} -1 * {{position.absolute.x}} {{/jsEval}},
+    offsetY: {{#jsEval}} -1 * {{position.absolute.y}} {{/jsEval}},
+    relativeOffsetX: {{#jsEval}} (-1 * {{position.absolute.x}} + 2) / ({{spriteWidth}} - {{width.outer}} + 4) * 100 {{/jsEval}},
+    relativeOffsetY: {{#jsEval}} (-1 * {{position.absolute.y}} + 2) / ({{spriteHeight}} - {{height.outer}} + 4) * 100 {{/jsEval}},
+    sizeX: {{#jsEval}} {{spriteWidth}} / ({{width.outer}} - 4) * 100 {{/jsEval}}%,
+    sizeY: {{#jsEval}} {{spriteHeight}} / ({{height.outer}} - 4) * 100 {{/jsEval}}%,
+    bgPS: {{#jsEval}}
+            (-1 * {{position.absolute.x}} + 2) / ({{spriteWidth}} - {{width.outer}} + 4) * 100
+          {{/jsEval}}% {{#jsEval}}
+            (-1 * {{position.absolute.y}} + 2) / ({{spriteHeight}} - {{height.outer}} + 4) * 100
+          {{/jsEval}}% / {{#jsEval}}
+            {{spriteWidth}} / ({{width.outer}} - 4) * 100
+          {{/jsEval}}% {{#jsEval}}
+            {{spriteHeight}} / ({{height.outer}} - 4) * 100
+          {{/jsEval}}%,
+  ),
+{{/shapes}}
+);
+
+@function getInfo($name, $prop: null) {
+  @if $name == url {
+    @return $imgUrl;
+  } @else if $name == imgWidth {
+    @return $imgWidth;
+  } @else if $name == imgHeight {
+    @return $imgHeight;
+  } @else {
+    @return map-get(map-get($_info, $name), $prop);
+  }
+}
+
+@mixin icon($name, $sizeMode: null) {
+  $size: var(--em, --elem-em);
+
+  --elem-em: 1em;
+  background: getInfo($name, bgPS) no-repeat url($imgUrl);
+  @if $sizeMode == width {
+    width: $size;
+    height: calc(
+      #{math.div(getInfo($name, height), getInfo($name, width))}
+      * $size
+    );
+  } @else {
+    width: calc(#{getInfo($name, aspectRatio)} * #{$size});
+    height: $size;
+  }
+}
+
