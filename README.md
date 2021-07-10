@@ -2,8 +2,6 @@ gulp-plugin-svg-sprite
 =======
 
 
-> 版本： v0.0.0
-
 把多張圖示整合成一張 SVG 向量圖片的 [Gulp](https://gulpjs.com/) 程式包。
 
 [Demo](https://bwaycer.github.io/gulp-plugin-svg-sprite/sample/page/index.html)
@@ -16,7 +14,7 @@ gulp-plugin-svg-sprite
 **合成 SVG 圖片並生成專用的 Scss 工具：**
 
 ```
-import gulpSvgSprite from './src/index.js';
+import gulpSvgSprite from '@bwaycer/gulp-plugin-svg-sprite';
 
 gulp.src('path/to/**/*.{svg,gif,jpg,png,webp}')
   .pipe(gulpSvgSprite())
