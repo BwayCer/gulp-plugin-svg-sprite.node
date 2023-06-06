@@ -16,7 +16,8 @@ gulp-plugin-svg-sprite
 ```
 import gulpSvgSprite from '@bwaycer/gulp-plugin-svg-sprite';
 
-gulp.src('path/to/**/*.{svg,gif,jpg,png,webp}')
+// 請使用常見且瀏覽器有支援的格式
+gulp.src('path/to/**/*.{svg,gif,jpg,png,webp,avif}')
   .pipe(gulpSvgSprite())
   .pipe(gulp.dest(...))
 ```

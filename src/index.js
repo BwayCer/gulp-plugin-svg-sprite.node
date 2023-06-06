@@ -7,20 +7,13 @@ import util from 'util';
 import Vinyl from 'vinyl';
 import PluginError from 'plugin-error';
 import SVGSpriter from 'svg-sprite';
-import imageSize from 'image-size';
+import probeImageSize from 'probe-image-size';
 
 
 const __dirname = path.join(import.meta.url.substring(5), '..');
 const _templatePath = path.join(__dirname, 'svgSpriteTmpl.scss');
 
 const pluginName = 'gulp-plugin-svg-sprite';
-const mimeForImage = {
-  'svg': 'image/svg+xml',
-  'gif': 'image/gif',
-  'jpg': 'image/jpeg',
-  'png': 'image/png',
-  'webp': 'image/webp',
-};
 
 
 /**
@@ -70,15 +63,16 @@ export default function svgSprite() {
 }
 
 function _resolveFileInfo({path: filePath, contents}) {
-  let {type, width, height} = imageSize(contents);
-  if (!(type in mimeForImage)) {
-    throw Error(`svgSprite can't handle "${type}" type of picture.`);
+  let imageSizeInfo = probeImageSize.sync(contents);
+  if (imageSizeInfo === null) {
+    throw Error(`svgSprite unrecognized image for "${filePath}".`);
   }
+  let {type, mime, width, height} = imageSizeInfo;
 
   let groupDirPath = path.dirname(filePath);
   let fileInfo = {
     type,
-    mime: mimeForImage[type],
+    mime,
     width,
     height,
     volume: width * height,
