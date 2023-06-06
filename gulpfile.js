@@ -14,7 +14,7 @@ let distPathPart = './dist/sample';
 export let svgSprite = gulp.series(
   () => gulp
     .src(
-      srcPathPart + '/image/**/*.{svg,gif,jpg,png,webp}',
+      srcPathPart + '/image/**/*.{svg,gif,jpg,png,webp,avif}',
       {base: path.resolve(srcPathPart)},
     )
     .pipe(gulpSvgSprite())
