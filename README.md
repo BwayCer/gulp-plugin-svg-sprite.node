@@ -4,7 +4,7 @@ gulp-plugin-svg-sprite
 
 把多張圖示整合成一張 SVG 向量圖片的 [Gulp](https://gulpjs.com/) 程式包。
 
-[Demo](https://bwaycer.github.io/gulp-plugin-svg-sprite/sample/page/index.html)
+[Demo](https://bwaycer.github.io/gulp-plugin-svg-sprite.node/sample/page/index.html)
 
 
 
