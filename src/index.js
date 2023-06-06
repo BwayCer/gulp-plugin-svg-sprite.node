@@ -14,14 +14,6 @@ const __dirname = path.join(import.meta.url.substring(5), '..');
 const _templatePath = path.join(__dirname, 'svgSpriteTmpl.scss');
 
 const pluginName = 'gulp-plugin-svg-sprite';
-const mimeForImage = {
-  'svg': 'image/svg+xml',
-  'gif': 'image/gif',
-  'jpg': 'image/jpeg',
-  'png': 'image/png',
-  'webp': 'image/webp',
-  'avif': 'image/avif',
-};
 
 
 /**
@@ -76,14 +68,11 @@ function _resolveFileInfo({path: filePath, contents}) {
     throw Error(`svgSprite unrecognized image for "${filePath}".`);
   }
   let {type, mime, width, height} = imageSizeInfo;
-  if (!(type in mimeForImage)) {
-    throw Error(`svgSprite can't handle image of "${type}" type.`);
-  }
 
   let groupDirPath = path.dirname(filePath);
   let fileInfo = {
     type,
-    mime: mimeForImage[type],
+    mime,
     width,
     height,
     volume: width * height,
