@@ -27,6 +27,7 @@ gulp.src('path/to/**/*.{svg,gif,jpg,png,webp,avif}')
 
 ```
 @use './path/to/scss-module' as scssModule with (
+  // 圖片相對於 css 文件的位置或者圖片的絕對路徑
   $imgUrlDirPath: './path/to/image.svg',
 );
 
