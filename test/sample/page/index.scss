@@ -96,6 +96,9 @@ body {
       &-gif-webp {
         @include devIcon('gif-', 'webp');
       }
+      &-gif-avif {
+        @include devIcon('gif-', 'avif');
+      }
       &-green-jpg {
         @include devIcon('green-', 'jpg');
       }
