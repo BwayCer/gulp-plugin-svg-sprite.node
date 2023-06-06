@@ -91,12 +91,21 @@ body .icon.dev-gif::before {
 }
 body .icon.dev-gif-webp {
   --elem-em: 1em;
-  background: 61.479% 0.565%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  background: 99.611% 0.565%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
   width: calc(1 * var(--em, --elem-em));
   height: var(--em, --elem-em);
 }
 body .icon.dev-gif-webp::before {
   content: "dev-webp";
+}
+body .icon.dev-gif-avif {
+  --elem-em: 1em;
+  background: 61.479% 0.565%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  width: calc(1 * var(--em, --elem-em));
+  height: var(--em, --elem-em);
+}
+body .icon.dev-gif-avif::before {
+  content: "dev-avif";
 }
 body .icon.dev-green-jpg {
   --elem-em: 1em;
@@ -109,7 +118,7 @@ body .icon.dev-green-jpg::before {
 }
 body .icon.dev-orange-png {
   --elem-em: 1em;
-  background: 99.611% 0.565%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  background: 0.389% 99.435%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
   width: calc(1 * var(--em, --elem-em));
   height: var(--em, --elem-em);
 }
@@ -118,7 +127,7 @@ body .icon.dev-orange-png::before {
 }
 body .icon.dev-red-webp {
   --elem-em: 1em;
-  background: 0.389% 99.435%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
+  background: 38.521% 99.435%/367.708% 284.375% no-repeat url("../image/starJue-dev.svg");
   width: calc(1 * var(--em, --elem-em));
   height: var(--em, --elem-em);
 }
