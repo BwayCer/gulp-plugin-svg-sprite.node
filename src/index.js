@@ -7,7 +7,7 @@ import util from 'util';
 import Vinyl from 'vinyl';
 import PluginError from 'plugin-error';
 import SVGSpriter from 'svg-sprite';
-import imageSize from 'image-size';
+import probeImageSize from 'probe-image-size';
 
 
 const __dirname = path.join(import.meta.url.substring(5), '..');
@@ -20,6 +20,7 @@ const mimeForImage = {
   'jpg': 'image/jpeg',
   'png': 'image/png',
   'webp': 'image/webp',
+  'avif': 'image/avif',
 };
 
 
@@ -70,9 +71,13 @@ export default function svgSprite() {
 }
 
 function _resolveFileInfo({path: filePath, contents}) {
-  let {type, width, height} = imageSize(contents);
+  let imageSizeInfo = probeImageSize.sync(contents);
+  if (imageSizeInfo === null) {
+    throw Error(`svgSprite unrecognized image for "${filePath}".`);
+  }
+  let {type, mime, width, height} = imageSizeInfo;
   if (!(type in mimeForImage)) {
-    throw Error(`svgSprite can't handle "${type}" type of picture.`);
+    throw Error(`svgSprite can't handle image of "${type}" type.`);
   }
 
   let groupDirPath = path.dirname(filePath);
