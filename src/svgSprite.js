@@ -8,7 +8,7 @@ import SVGSpriter from 'svg-sprite';
 import probeImageSize from 'probe-image-size';
 
 const __dirname = path.join(import.meta.url.substring(5), '..');
-const _templatePath = path.join(__dirname, 'svgSpriteTmpl.scss');
+const _templatePath = path.join(__dirname, 'svgSpriteTmpl.scss.txt');
 
 
 /**
