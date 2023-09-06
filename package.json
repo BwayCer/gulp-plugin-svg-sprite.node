@@ -21,12 +21,17 @@
     "gulp",
     "svg-sprite"
   ],
+  "bin": {
+    "svgSprite": "./bin/svgSprite.js"
+  },
   "files": [
     "src/",
     "README.md",
     "LICENSE"
   ],
   "dependencies": {
+    "minimist": "^1.2.8",
+    "multimatch": "^6.0.0",
     "probe-image-size": "^7.2.3",
     "svg-sprite": "^2.0.2"
   },
