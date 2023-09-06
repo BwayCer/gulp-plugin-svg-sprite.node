@@ -27,7 +27,6 @@
     "LICENSE"
   ],
   "dependencies": {
-    "plugin-error": "^1.0.1",
     "probe-image-size": "^7.2.3",
     "svg-sprite": "^2.0.2"
   },
