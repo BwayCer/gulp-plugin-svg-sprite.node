@@ -5,7 +5,7 @@ import {Transform} from 'stream';
 import gulp from 'gulp';
 import sass from 'sass';
 
-import gulpSvgSprite from './src/index.js';
+import {svgSpriteTransform} from './src/index.js';
 
 
 let srcPathPart = './test/sample';
@@ -17,7 +17,7 @@ export let svgSprite = gulp.series(
       srcPathPart + '/image/**/*.{svg,gif,jpg,png,webp,avif}',
       {base: path.resolve(srcPathPart)},
     )
-    .pipe(gulpSvgSprite())
+    .pipe(svgSpriteTransform())
     .pipe(gulp.dest(distPathPart))
   ,
   () => gulp
